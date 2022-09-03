@@ -14,4 +14,20 @@ const getAboutPage = (req, res) => {
     );
 }
 
-export { getIndexPage, getAboutPage };
+const getRegisterPage = (req, res) => {
+    res.render("register",
+        {
+            active_page: 'Register'
+        }
+    );
+}
+
+const getLoginPage = (req, res) => {
+    res.render("login",
+        {
+            active_page: 'Login'
+        }
+    );
+}
+
+export { getIndexPage, getAboutPage, getRegisterPage, getLoginPage };
