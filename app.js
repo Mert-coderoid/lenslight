@@ -1,12 +1,29 @@
 import express from "express";
+import dotenv from "dotenv";
+import conn from "./db.js";
+import pageRoute from "./routes/pageRoute.js";
+import * as options from "./options.js";
+import photoRoute from "./routes/photoRoute.js";
 
+// Load environment variables from .env file
+dotenv.config();
+
+// Connect to MongoDB
+conn();
+
+// Create Express server
 const app = express();
-const PORT = 3000;
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+// MIDDLEWARE
+app.use(express.json());
+app.set('view engine', 'ejs');
+app.use(express.static('public', options.staticFilesOptions));
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// ROUTES
+app.use('/', pageRoute);
+app.use('/photos', photoRoute);
+
+// START SERVER
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
 });
