@@ -28,10 +28,9 @@ const createPhoto = asyncHandler(async (req, res, next) => {
 const getPhotos = asyncHandler(async (req, res, next) => {
     try {
         const photos = await Photo.find({})
-        res.status(200).json({
-            success: true,
-            count: photos.length,
-            photos: photos
+        res.status(200).render('photos', { 
+            photos: photos,
+            active_page: 'photos'
         });
     } catch (error) {
         res.status(400).json({
@@ -43,4 +42,26 @@ const getPhotos = asyncHandler(async (req, res, next) => {
     }
 });
 
-export { createPhoto, getPhotos };
+// @desc    get photo by id
+// @route   GET /photos/:id
+// @access
+const getPhotoById = asyncHandler(async (req, res, next) => {
+    try {
+        const photo = await Photo.findById({
+            _id : req.params.id
+        });
+        res.status(200).render('photo', {
+            photo: photo,
+            active_page: 'photos'
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            error: error
+        });
+        console.log(`photoController.getPhotoById: error = ${error}`);
+        next(error);
+    }
+})
+
+export { createPhoto, getPhotos, getPhotoById };

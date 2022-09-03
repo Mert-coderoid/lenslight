@@ -1,0 +1,35 @@
+<%- include('partials/_header') %>
+
+  <!-- body -->
+
+  <body class="main-layout inner_page">
+
+
+    <!-- header -->
+    <%- include('partials/_menu') %>
+      <!-- end header inner -->
+      <!-- about -->
+      <div class="about">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="titlepage text_align_left">
+                <h2>
+                  <%= photo.name %>
+                </h2>
+                <p>
+                  <%= photo.description %>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="about_img">
+                <figure><img src="/images/about_img.png" alt="#" /></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end about -->
+      <!-- end footer -->
+      <%- include('partials/_footer') %>
