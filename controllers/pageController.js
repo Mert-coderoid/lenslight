@@ -1,4 +1,5 @@
 const getIndexPage = (req, res) => {
+    console.log("Request user: " + req.user);
     res.render("index",
         {
             active_page: 'Home'
